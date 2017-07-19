@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EE Lab task - Anthony Karolewski</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl" class="body-elements">
+    <div class="info-box">
+      <span class="box-header">
+        <div class="avatar-box"></div>
+        <h4 class="info-full-name"></h4>
+      </span>
+        <h5 class="info-email"></h5>
+        <h5 class="info-drugs"></h5>
+        <div class="map-box"></div>
+    </div>
+    <div class="container">
+      <div class="row">
+          <div class="col-sm-8 center-block">
+            <h2 class="text-center">The are: {{usersList.length}} users created</h2>
+            <h3 class="text-center">There are currently: {{activeUsers}} users active</h3>
+            <h4 class="text-center">There are currently: {{activeFemales}} females active</h4>
+            <h4 class="text-center">There are currently: {{activeMales}} males active</h4>
+            <h4 class="text-center">{{lastSixMonths}} users have logged in during last six months</h4>
+
+            <div class="input-group">
+              <span class="input-group-addon">Search: </span>
+              <input type="text" class="form-control" placeholder="Who are you looking for?" ng-model="searchBar">
+            </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thread>
+                    <tr>
+                      <th ng-repeat="header in [
+                      'ID' , 'Last name' , 'Name' , 'Username' , 'Gender'
+                      ]">{{header}}</th>
+                    </tr>
+                  </thread>
+                    <tbody>
+                      <tr ng-repeat="user in usersList | orderBy : 'last_name' | filter : searchBar" ng-click="favoriteColor(user); usersData(user)">
+                        <td>{{user.id}}</td>
+                        <td>{{user.last_name}}</td>
+                        <td>{{user.first_name}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.gender}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBph6lWJgmsCY2dCNo_hodgm_3CdbmJIA"
+    async defer></script>
+  </body>
+</html>
